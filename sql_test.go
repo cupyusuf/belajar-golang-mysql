@@ -15,7 +15,7 @@ func TestExecSql(t *testing.T) {
 	script := "INSERT INTO customer(id, name) VALUES(2, 'Firlana')"
 	_, err := db.ExecContext(ctx, script)
 	if err != nil {
-		panic(err.Error())
+		panic(err)
 	}
 
 	fmt.Println("Success insert data new customer")
