@@ -1,14 +1,13 @@
 package repository
 
 import (
+	belajar_golang_database "belajar-golang-mysql"
+	"belajar-golang-mysql/entity"
 	"context"
 	"fmt"
 	"testing"
 
 	_ "github.com/go-sql-driver/mysql"
-
-	belajar_golang_database "belajar-golang-mysql"
-	"belajar-golang-mysql/entity"
 )
 
 func TestCommentInsert(t *testing.T) {
@@ -31,7 +30,7 @@ func TestCommentInsert(t *testing.T) {
 func TestFindById(t *testing.T) {
 	commentRepository := NewCommentRepository(belajar_golang_database.GetConnection())
 
-	comment, err := commentRepository.FindById(context.Background(), 37)
+	comment, err := commentRepository.FindById(context.Background(), 12)
 	if err != nil {
 		panic(err)
 	}
