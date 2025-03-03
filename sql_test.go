@@ -10,7 +10,7 @@ import (
 )
 
 func TestExecSql(t *testing.T) {
-	db := GetConnnection()
+	db := GetConnection()
 	defer db.Close()
 
 	ctx := context.Background()
@@ -25,7 +25,7 @@ func TestExecSql(t *testing.T) {
 }
 
 func TestQuerySql(t *testing.T) {
-	db := GetConnnection()
+	db := GetConnection()
 	defer db.Close()
 
 	ctx := context.Background()
@@ -53,7 +53,7 @@ func TestQuerySql(t *testing.T) {
 }
 
 func TestQuerySqlComplex(t *testing.T) {
-	db := GetConnnection()
+	db := GetConnection()
 	defer db.Close()
 
 	ctx := context.Background()
@@ -97,7 +97,7 @@ func TestQuerySqlComplex(t *testing.T) {
 }
 
 func TestSqlInjection(t *testing.T) {
-	db := GetConnnection()
+	db := GetConnection()
 	defer db.Close()
 
 	ctx := context.Background()
@@ -128,7 +128,7 @@ func TestSqlInjection(t *testing.T) {
 }
 
 func TestSqlInjectionSafe(t *testing.T) {
-	db := GetConnnection()
+	db := GetConnection()
 	defer db.Close()
 
 	ctx := context.Background()
@@ -159,7 +159,7 @@ func TestSqlInjectionSafe(t *testing.T) {
 }
 
 func TestExecSqlParameter(t *testing.T) {
-	db := GetConnnection()
+	db := GetConnection()
 	defer db.Close()
 
 	ctx := context.Background()
@@ -177,7 +177,7 @@ func TestExecSqlParameter(t *testing.T) {
 }
 
 func TestAutoIncrement(t *testing.T) {
-	db := GetConnnection()
+	db := GetConnection()
 	defer db.Close()
 
 	ctx := context.Background()
@@ -199,7 +199,7 @@ func TestAutoIncrement(t *testing.T) {
 }
 
 func TestPrepareStatement(t *testing.T) {
-	db := GetConnnection()
+	db := GetConnection()
 	defer db.Close()
 
 	ctx := context.Background()
@@ -228,7 +228,7 @@ func TestPrepareStatement(t *testing.T) {
 }
 
 func TestTransaction(t *testing.T) {
-	db := GetConnnection()
+	db := GetConnection()
 	defer db.Close()
 
 	ctx := context.Background()
