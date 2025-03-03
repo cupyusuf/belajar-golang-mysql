@@ -101,12 +101,12 @@ func TestSqlInjection(t *testing.T) {
 
 	ctx := context.Background()
 
-	username := "admin"
-	// username := "admin' #"
+	// username := "admin"
+	username := "admin' #"
 	password := "admin"
 
 	script := "SELECT username FROM user WHERE username = '" + username + "' AND password = '" + password + "' LIMIT 1"
-	// fmt.Println(script)
+	fmt.Println(script)
 	rows, err := db.QueryContext(ctx, script)
 	if err != nil {
 		panic(err)
@@ -124,4 +124,53 @@ func TestSqlInjection(t *testing.T) {
 	} else {
 		fmt.Println("Login failed")
 	}
+}
+
+func TestSqlInjectionSafe(t *testing.T) {
+	db := GetConnnection()
+	defer db.Close()
+
+	ctx := context.Background()
+
+	// username := "admin"
+	username := "admin' #"
+	password := "admin"
+
+	script := "SELECT username FROM user WHERE username = ? AND password = ? LIMIT 1"
+	// fmt.Println(script)
+	rows, err := db.QueryContext(ctx, script, username, password)
+	if err != nil {
+		panic(err)
+	}
+
+	defer rows.Close()
+
+	if rows.Next() {
+		var username string
+		err := rows.Scan(&username)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println("Login success : ", username)
+	} else {
+		fmt.Println("Login failed")
+	}
+}
+
+func TestExecSqlParameter(t *testing.T) {
+	db := GetConnnection()
+	defer db.Close()
+
+	ctx := context.Background()
+
+	username := "yusuf"
+	password := "yusuf"
+
+	script := "INSERT INTO user(username, password) VALUES(?, ?)"
+	_, err := db.ExecContext(ctx, script, username, password)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Success insert data new user")
 }
